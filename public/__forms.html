@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <!--
+      Static skeleton for Netlify Forms detection at deploy time.
+      Field names must match src/lib/enquiry.ts exactly.
+      The real forms are React components that POST here via fetch.
+    -->
+    <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="enquiry" />
+      <input name="bot-field" />
+      <input name="source" />
+      <input name="name" />
+      <input name="email" type="email" />
+      <input name="company" />
+      <input name="needs" />
+      <input name="start" />
+      <textarea name="message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>

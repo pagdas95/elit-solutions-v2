@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+/* Fonts are self-hosted via next/font/local (see src/app/fonts.ts). */
+
+/* ------------------------------------------------------------------
+   ElIT design system v3 · palette "Ion"
+   Breakpoints mirror the approved designs: 640 / 860 / 1080 (max-width),
+   expressed mobile-first as sm ≥641, md ≥861, lg ≥1081.
+   ------------------------------------------------------------------ */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 641px;
+  --breakpoint-md: 861px;
+  --breakpoint-lg: 1081px;
+
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-midnight: #05070d;
+  --color-panel: #0a0e16;
+  --color-raised: #0f141e;
+  --color-high: #161c28;
+  --color-line: #1a2130;
+  --color-line2: #283245;
+  --color-ice: #f4f7fb;
+  --color-fg2: #cdd5e0;
+  --color-mute: #9aa4b2;
+  --color-mute2: #7d8796;
+  --color-mute3: #727c8c;
+  --color-canvas: #e6e9ee;
+  --color-card: #ffffff;
+  --color-mist: #f2f4f7;
+  --color-chip: #e9edf2;
+  --color-stone: #d5dae1;
+  --color-ink2: #3c4452;
+  --color-ink3: #586172;
+  --color-hair: #c5cbd4;
+  --color-ghost: #b9c0ca;
+  --color-accent: #38e8ff;
+  --color-accent-ink: #006a7b;
+  --color-accent-soft: rgba(56, 232, 255, 0.1);
+  --color-tag: #d3f8ff;
+  --color-pilot: #dce7ff;
+  --color-live: #e5dbff;
+  --color-l1: #38e8ff;
+  --color-l1-logo: #22d3ee;
+  --color-l2: #3b82f6;
+  --color-l2-ink: #1d4ed8;
+  --color-l2-soft: #93c5fd;
+  --color-l3: #8b5cf6;
+  --color-l3-ink: #6d28d9;
+  --color-l3-soft: #a78bfa;
+  --color-error: #fca5a5;
+
+  --font-display: var(--font-barlow), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-brand: var(--font-sora), var(--font-inter), sans-serif;
+
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --glow: rgba(56, 232, 255, 0.28);
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-midnight);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-midnight);
+  color: var(--color-ice);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-midnight);
+}
+
+/* Focus: 2px cyan outline, 2px offset (design system rule) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+canvas:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent) !important;
+}
+
+.sr-only-h {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* ---------- Display type ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Motion: masked headline entrance ---------- */
+.el-line {
+  display: block;
+  overflow: hidden;
+  padding: 0 0.08em 0.14em 0;
+  margin: 0 -0.08em -0.14em 0;
+}
+.el-line > span {
+  display: block;
+  animation: el-mask 650ms var(--ease) both;
+}
+.el-line:nth-child(2) > span {
+  animation-delay: 80ms;
+}
+.el-line:nth-child(3) > span {
+  animation-delay: 160ms;
+}
+@keyframes el-mask {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+.el-rise {
+  animation: el-rise 650ms var(--ease) both;
+}
+.el-fade {
+  animation: el-rise 420ms var(--ease) both;
+}
+@keyframes el-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Buttons invert on hover ---------- */
+.el-btn,
+.el-cta,
+.el-btnl {
+  transition:
+    background-color 250ms var(--ease),
+    color 250ms var(--ease),
+    border-color 250ms var(--ease) !important;
+}
+.el-btn:hover {
+  background: var(--color-ice) !important;
+  color: var(--color-midnight) !important;
+}
+.el-btnl:hover {
+  background: var(--color-accent) !important;
+  color: var(--color-midnight) !important;
+}
+.el-cta:hover {
+  background: var(--cta-hover) !important;
+  color: var(--color-midnight) !important;
+}
+.el-btn-dark {
+  transition: background-color 250ms var(--ease);
+}
+.el-btn-dark:hover:not(:disabled) {
+  background: var(--color-high) !important;
+}
+a > svg.el-arr,
+button > svg.el-arr {
+  transition: transform 250ms var(--ease);
+}
+a:hover > svg.el-arr,
+button:hover > svg.el-arr {
+  transform: translateX(4px);
+}
+
+/* ---------- Nav ---------- */
+.el-navlink {
+  transition:
+    color 300ms var(--ease),
+    background-color 300ms var(--ease);
+}
+.el-dd {
+  position: relative;
+}
+.el-ddmenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  padding-top: 10px;
+  min-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 220ms var(--ease),
+    transform 220ms var(--ease),
+    visibility 220ms;
+}
+.el-dd:hover .el-ddmenu,
+.el-dd:focus-within .el-ddmenu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.el-ddmenu a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--color-fg2);
+  text-decoration: none;
+  font-size: 14px;
+  transition:
+    background-color 200ms var(--ease),
+    color 200ms var(--ease);
+}
+.el-ddmenu a:hover {
+  background: var(--color-high);
+  color: var(--color-ice);
+}
+
+/* ---------- Rows, tiles, chips ---------- */
+.el-row {
+  transition: background-color 200ms var(--ease);
+}
+.el-row:hover {
+  background: rgba(244, 247, 251, 0.04);
+}
+.el-tile {
+  transition: transform 300ms var(--ease);
+}
+.el-tile:hover {
+  transform: translateY(-4px);
+}
+.el-chip {
+  transition:
+    background-color 220ms var(--ease),
+    color 220ms var(--ease),
+    border-color 220ms var(--ease);
+}
+.el-chip-light:hover {
+  border-color: var(--color-midnight) !important;
+}
+.el-chip-dark:hover {
+  border-color: var(--color-ice) !important;
+}
+.el-jump {
+  transition:
+    background-color 250ms var(--ease),
+    border-color 250ms var(--ease);
+}
+.el-jump:hover {
+  background: var(--color-high) !important;
+  border-color: var(--color-line2) !important;
+}
+.el-step,
+.el-layer {
+  transition:
+    color 220ms var(--ease),
+    background-color 220ms var(--ease);
+}
+.el-step:hover,
+.el-layer:hover {
+  color: var(--color-ice) !important;
+}
+.el-faqq {
+  transition: color 200ms var(--ease);
+}
+.el-faqq:hover {
+  color: var(--color-accent-ink) !important;
+}
+
+/* ---------- "Sound familiar?" rows: text slides, tag turns cyan, underline draws ---------- */
+.el-prow {
+  position: relative;
+}
+.el-prow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1.5px;
+  background: var(--color-midnight);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 500ms var(--ease);
+}
+.el-prow:hover::after {
+  transform: scaleX(1);
+}
+.el-prow:last-child::after {
+  display: none;
+}
+.el-prow > span:nth-child(2) {
+  transition: transform 380ms var(--ease);
+}
+.el-prow:hover > span:nth-child(2) {
+  transform: translateX(10px);
+}
+.el-prow > span:nth-child(1),
+.el-prow > span:nth-child(3) {
+  transition:
+    color 260ms var(--ease),
+    transform 380ms var(--ease);
+}
+.el-prow:hover > span:nth-child(1) {
+  color: var(--color-midnight) !important;
+}
+.el-prow:hover > span:nth-child(3) {
+  color: var(--color-accent-ink) !important;
+  transform: translateX(4px);
+}
+
+/* ---------- Hero demo scenes ---------- */
+.el-layer-scene {
+  position: absolute;
+  inset: 22px 22px 64px;
+  transition:
+    opacity 420ms var(--ease),
+    transform 420ms var(--ease),
+    visibility 420ms;
+}
+.el-layer-scene [data-o] {
+  transition: opacity 320ms var(--ease);
+}
+
+/* Sheets that slide over the previous section */
+.sheet {
+  border-radius: 56px 56px 0 0;
+}
+@media (max-width: 640px) {
+  .sheet {
+    border-radius: 36px 36px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}

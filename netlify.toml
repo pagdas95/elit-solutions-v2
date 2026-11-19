@@ -1,0 +1,29 @@
+# Netlify: Next.js is detected automatically and built with the
+# OpenNext adapter (@netlify/plugin-nextjs). No plugin entry needed.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Every pull request gets a Deploy Preview, and every pushed branch a
+# branch deploy. Previews are always noindex (see src/app/layout.tsx).
+# At launch, set ALLOW_INDEXING = "true" for production only:
+# [context.production.environment]
+#   ALLOW_INDEXING = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
