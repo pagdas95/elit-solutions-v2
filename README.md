@@ -3,6 +3,8 @@
 "Software, built in layers." Marketing site for ElIT Solutions: Home, Services, Lab and Contact,
 built from the approved v3 designs (palette **Ion**).
 
+**Live:** https://elit-solutions.netlify.app (Netlify project `elit-solutions`, private to the team for now)
+
 **Stack:** Next.js 16 (App Router, Cache Components) · Tailwind CSS 4 · Motion · Netlify.
 
 ## Run it
