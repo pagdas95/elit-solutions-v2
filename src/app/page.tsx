@@ -8,7 +8,7 @@ import { HomeEnquiryForm } from "@/components/home/HomeEnquiryForm";
 import { DarkSheet, Footer } from "@/components/SiteFooter";
 import { Arrow } from "@/components/icons";
 import { StatusTag, wrap } from "@/components/ui";
-import { site } from "@/lib/site";
+import { ContactChannels } from "@/components/ContactChannels";
 
 const HeroArrow = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="el-arr">
@@ -250,20 +250,7 @@ export default function Home() {
               <br />
               <span className="text-mute2">slowing you down.</span>
             </h2>
-            <div className="flex max-w-[520px] flex-col border-t border-line">
-              <a href={site.contact.emailHref} className="flex justify-between gap-4 border-b border-line py-4 text-base text-ice">
-                <span>{site.contact.email}</span>
-                <span className="mono text-[11px] tracking-[0.1em] text-mute2">EMAIL · DEMO</span>
-              </a>
-              <a href={site.contact.whatsappHref} className="flex justify-between gap-4 border-b border-line py-4 text-base text-ice">
-                <span>{site.contact.whatsapp}</span>
-                <span className="mono text-[11px] tracking-[0.1em] text-mute2">WHATSAPP · DEMO</span>
-              </a>
-              <p className="m-0 flex justify-between gap-4 border-b border-line py-4 text-base">
-                <span>Cyprus</span>
-                <span className="mono text-[11px] tracking-[0.1em] text-mute2">STUDIO</span>
-              </p>
-            </div>
+            <ContactChannels />
           </div>
           <HomeEnquiryForm />
         </section>

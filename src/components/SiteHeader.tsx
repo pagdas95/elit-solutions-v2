@@ -175,6 +175,7 @@ export function SiteHeader() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
+          data-lenis-prevent
           className="el-fade fixed inset-0 z-40 flex flex-col gap-6 overflow-y-auto bg-midnight px-5 pt-4 pb-8 text-ice"
         >
           <div className="flex min-h-[62px] items-center justify-between">

@@ -3,7 +3,7 @@
 "Software, built in layers." Marketing site for ElIT Solutions: Home, Services, Lab and Contact,
 built from the approved v3 designs (palette **Ion**).
 
-**Stack:** Next.js 16 (App Router, Cache Components) · Tailwind CSS 4 · Motion · Netlify.
+**Stack:** Next.js 16 (App Router, Cache Components) · Tailwind CSS 4 · Lenis (smooth scroll) · Netlify · Umami (cookieless analytics).
 
 ## Run it
 
@@ -25,7 +25,11 @@ npm run lint
 | `src/components/home/LayeredE.ts` | The 3D layered E, drawn on a 2D canvas (no video, no 3D files) |
 | `src/components/home/*` | Hero demo panel, pinned hero, scroll-filled statement, loop, stack |
 | `src/components/lab/projects.tsx` | Lab projects and case files: edit here to add work |
-| `src/lib/site.ts` | Contact details and other placeholders waiting on the owner |
+| `src/lib/site.ts` | Contact details, legal name/address, analytics config. Empty values are hidden or flagged |
+| `src/components/SmoothScroll.tsx` | Lenis smooth scrolling (off for reduced motion; touch stays native) |
+| `src/components/home/StackDemo.tsx` | Per-layer micro-demos in "The stack" (demo data) |
+| `src/lib/og.tsx` + `*/opengraph-image.tsx` | Social share images, prerendered at build (fonts in `src/app/og-fonts/`) |
+| `src/app/privacy`, `src/app/terms` | Legal pages (`src/components/LegalPage.tsx`) |
 | `public/__forms.html` | Netlify Forms skeleton (field names must match `src/lib/enquiry.ts`) |
 
 ### Conventions
@@ -42,10 +46,14 @@ npm run lint
 - Previews and production are `noindex` until `ALLOW_INDEXING=true` is set for the production context.
 - **Forms:** enable *Form detection* once in Netlify (Site → Forms). Submissions are named `enquiry`;
   set up an email notification there. Locally the form shows its error state, because only Netlify accepts the POST.
+- **Analytics (Umami, free Hobby plan, EU region):** create a website at cloud.umami.is, then set
+  `NEXT_PUBLIC_UMAMI_WEBSITE_ID` in Netlify (Site configuration → Environment variables) and redeploy.
+  Only production is tracked. Form successes are recorded as the event `Enquiry sent`.
 
 ## Open items (from the brief)
 
-- Real email, WhatsApp, call-booking link, city and hours → `src/lib/site.ts`
-- Business name and address for Privacy and Terms; code ownership terms (Services FAQ)
+- City and opening hours (optional), legal business name and address → `src/lib/site.ts`
+- Confirm the proposed code ownership wording (Services FAQ) and the 12-month enquiry retention (Privacy)
+- Have a lawyer glance over Privacy and Terms before launch
 - Wordmark decision (parked): change `src/components/Logo.tsx` only
-- Deferred motion: Lenis smooth scroll, stack tabs replaying micro-demos, real product footage
+- Real product footage for the hero, when it exists

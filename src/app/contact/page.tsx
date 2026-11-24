@@ -3,13 +3,10 @@ import { EnquiryForm } from "@/components/contact/EnquiryForm";
 import { FaqSection } from "@/components/FaqSection";
 import { DarkSheet, Footer } from "@/components/SiteFooter";
 import { Eyebrow, MaskedTitle, wrap } from "@/components/ui";
-import { site, type Faq } from "@/lib/site";
+import { ContactChannels } from "@/components/ContactChannels";
+import { pageMeta, type Faq } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Tell us what's slowing you down. A few lines are enough; we reply within one business day.",
-};
+export const metadata: Metadata = pageMeta("Contact", "Tell us what's slowing you down. A few lines are enough; we reply within one business day.");
 
 const NEXT = [
   ["01", "We reply.", "Within one business day, from a person, not a bot. Usually with a couple of questions."],
@@ -24,11 +21,7 @@ const FAQ: Faq[] = [
   ["What if I already have a website or system?", "We can improve, connect or look after what you have. Sometimes that is the better answer than starting again."],
 ];
 
-const row = "el-row flex min-h-[60px] items-center justify-between gap-4 border-b border-line px-1 text-base text-ice";
-const tag = "mono text-[11px] tracking-[0.1em] text-mute2";
-
 export default function ContactPage() {
-  const c = site.contact;
   return (
     <>
       <div data-nav="dark" className="relative z-0">
@@ -44,12 +37,7 @@ export default function ContactPage() {
               A few lines are enough. We&apos;ll reply with honest advice, even if the answer is that you
               don&apos;t need us yet.
             </p>
-            <div className="el-rise flex max-w-[520px] flex-col border-t border-line [animation-delay:360ms]">
-              <a href={c.emailHref} className={row}><span>{c.email}</span><span className={tag}>EMAIL · DEMO</span></a>
-              <a href={c.whatsappHref} className={row}><span>{c.whatsapp}</span><span className={tag}>WHATSAPP · DEMO</span></a>
-              <a href={c.callHref} className={row}><span>Book a 30-minute call</span><span className={tag}>CALENDAR · DEMO</span></a>
-              <p className={`${row} m-0`}><span>Cyprus · {c.city}</span><span className={tag}>MON–FRI · {c.hours}</span></p>
-            </div>
+            <ContactChannels full className="el-rise [animation-delay:360ms]" />
           </div>
           <div
             id="enquiry"

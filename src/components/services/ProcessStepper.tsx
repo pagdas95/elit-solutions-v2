@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Collapse } from "../Collapse";
 import { wrapWide } from "../ui";
+import { scrollToEl } from "../SmoothScroll";
 
 const STEPS = [
   { n: "01", name: "Talk", desc: "A 30-minute call about your business, what is slowing you down and what good looks like.",
@@ -59,7 +60,7 @@ export function ProcessStepper() {
                       setStep(i);
                       const t = e.currentTarget;
                       if (window.innerWidth <= 860)
-                        setTimeout(() => t.scrollIntoView({ block: "nearest", behavior: "smooth" }), 30);
+                        setTimeout(() => scrollToEl(t, "nearest"), 30);
                     }}
                     className={`el-step relative flex w-full cursor-pointer items-center gap-5 border-0 border-b border-line bg-transparent py-5 text-left ${
                       on ? "text-ice" : "text-mute3"

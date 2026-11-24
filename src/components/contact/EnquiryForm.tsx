@@ -4,6 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Arrow } from "../icons";
 import { EMAIL_RE, submitEnquiry } from "@/lib/enquiry";
+import { track } from "@/lib/track";
 
 const NEEDS = [
   ["web", "Website", "#38E8FF"],
@@ -91,6 +92,7 @@ export function EnquiryForm() {
         message: form.msg,
         "bot-field": bot.current?.value ?? "",
       });
+      track("Enquiry sent", { source: "contact" });
       setState("sent");
     } catch {
       setState("error");

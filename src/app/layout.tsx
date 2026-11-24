@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { barlow, geistMono, inter, sora } from "./fonts";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { Analytics } from "@/components/Analytics";
 import { site } from "@/lib/site";
 
 const indexable =
@@ -21,6 +23,7 @@ export const metadata: Metadata = {
     description: site.description,
     locale: "en_GB",
   },
+  twitter: { card: "summary_large_image" },
   // Previews are never indexed. At launch, set ALLOW_INDEXING=true for the
   // production context in Netlify (CONTEXT is set by Netlify at build time).
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
@@ -44,8 +47,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <SmoothScroll />
         <SiteHeader />
         <main id="main">{children}</main>
+        <Analytics />
       </body>
     </html>
   );

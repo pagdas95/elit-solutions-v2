@@ -5,13 +5,9 @@ import { FaqSection } from "@/components/FaqSection";
 import { CtaBlock, DarkSheet, Footer } from "@/components/SiteFooter";
 import { Arrow, Check } from "@/components/icons";
 import { Eyebrow, MaskedTitle, wrap } from "@/components/ui";
-import type { Faq } from "@/lib/site";
+import { pageMeta, type Faq } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Websites, booking and custom software, automation and AI, plus cloud and integrations. Four layers, one team that builds, hosts and looks after it.",
-};
+export const metadata: Metadata = pageMeta("Services", "Websites, booking and custom software, automation and AI, plus cloud and integrations. Four layers, one team that builds, hosts and looks after it.");
 
 type Section = {
   id: string;
@@ -82,7 +78,7 @@ const FAQ: Faq[] = [
   ["How much does a project cost?", "It depends on scope, so we quote after the first call. You get a written, fixed quote for the agreed scope before any work starts."],
   ["How long does it take?", "The written plan gives you a timeline before you commit. Focused websites are the quickest; systems that connect several tools take longer."],
   ["Can you work with the tools we already use?", "Usually, yes. We connect common calendars, email, payment and accounting tools through their APIs. If something cannot be connected, the plan says so."],
-  ["Who owns the website and the code?", "Your domain, content and accounts are always in your name. [Confirm code ownership terms.]"],
+  ["Who owns the website and the code?", "You do. Your domain, content and accounts are always in your name, and the code we write for you is yours once the final invoice is paid. Our own products, such as ElIT Booking, stay ours: you get a licence to use them while your plan is active."],
   ["Is the AI assistant available now?", "It is in development. Automation is available today; the assistant is being piloted, and we will tell you honestly whether it fits your case."],
 ];
 
