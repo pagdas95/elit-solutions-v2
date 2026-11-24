@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Arrow } from "../icons";
+import { scrollToEl } from "../SmoothScroll";
 import { StatusTag, wrap } from "../ui";
 import { FILTERS, PROJECTS, type Kind } from "./projects";
 
@@ -13,7 +14,7 @@ export function LabExplorer() {
   const caseRef = useRef<HTMLElement>(null);
 
   const toCase = () =>
-    setTimeout(() => caseRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+    setTimeout(() => scrollToEl(caseRef.current), 40);
 
   // Deep links from Home tiles: /lab?p=clinic
   useEffect(() => {

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { EMAIL_RE, submitEnquiry } from "@/lib/enquiry";
+import { track } from "@/lib/track";
 
 const field =
   "box-border min-h-[50px] w-full rounded-lg border bg-midnight px-4 text-[15px] text-ice transition-colors duration-200 placeholder:text-mute3";
@@ -29,6 +30,7 @@ export function HomeEnquiryForm() {
         message: String(fd.get("message") ?? ""),
         "bot-field": String(fd.get("bot-field") ?? ""),
       });
+      track("Enquiry sent", { source: "home" });
       setFirst(name.split(" ")[0]);
       setState("sent");
     } catch {

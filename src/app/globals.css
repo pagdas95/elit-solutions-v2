@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 /* Fonts are self-hosted via next/font/local (see src/app/fonts.ts). */
+@import "lenis/dist/lenis.css";
 
 /* ------------------------------------------------------------------
    ElIT design system v3 · palette "Ion"
@@ -338,6 +339,46 @@ button:hover > svg.el-arr {
   transform: translateX(4px);
 }
 
+/* ---------- Legal pages ---------- */
+.legal-prose p {
+  margin: 0 0 14px;
+}
+.legal-prose p:last-child,
+.legal-prose ul:last-child {
+  margin-bottom: 0;
+}
+.legal-prose ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+.legal-prose li {
+  margin: 6px 0;
+}
+.legal-prose strong {
+  color: var(--color-midnight);
+  font-weight: 600;
+}
+.legal-prose a {
+  color: var(--color-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Stack micro-demos: steps light up one after another ---------- */
+.el-demo-step {
+  animation: el-demo-in 520ms var(--ease) both;
+}
+@keyframes el-demo-in {
+  from {
+    opacity: 0.15;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- Hero demo scenes ---------- */
 .el-layer-scene {
   position: absolute;
@@ -371,6 +412,10 @@ button:hover > svg.el-arr {
   }
 }
 
+/* Native smooth scrolling as a fallback; Lenis takes over when it runs. */
 html {
   scroll-behavior: smooth;
+}
+html.lenis {
+  scroll-behavior: auto;
 }

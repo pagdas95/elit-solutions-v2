@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { LAYERS } from "@/lib/layers";
+import { StackDemo } from "./StackDemo";
 import { Collapse } from "../Collapse";
 import { wrapWide } from "../ui";
+import { scrollToEl } from "../SmoothScroll";
 
 const SPRING = "transform 700ms cubic-bezier(0.2,0.7,0.1,1), opacity 300ms ease-out";
 
 /** "Three layers. One team." — interactive on desktop, accordion on phones. */
 export function StackSection() {
   const [active, setActive] = useState(0);
+  const [run, setRun] = useState(0); // bump to replay the micro-demo
   const cur = LAYERS[active];
   const all = active === 3; // Foundation lights the whole stack
   const op = (i: number) => (all || active === i ? 1 : 0.16);
@@ -41,9 +44,10 @@ export function StackSection() {
                     aria-expanded={on}
                     onClick={(e) => {
                       setActive(i);
+                      setRun((r) => r + 1);
                       const t = e.currentTarget;
                       if (window.innerWidth <= 860)
-                        setTimeout(() => t.scrollIntoView({ block: "nearest", behavior: "smooth" }), 30);
+                        setTimeout(() => scrollToEl(t, "nearest"), 30);
                     }}
                     className={`el-layer display flex w-full cursor-pointer items-center gap-4 border-0 border-b border-line bg-transparent py-[18px] text-left text-[clamp(38px,4.2vw,64px)] leading-[0.95] ${
                       on ? "text-ice" : "text-mute3"
@@ -77,6 +81,9 @@ export function StackSection() {
                         >
                           {l.status}
                         </p>
+                        <div className="mt-5">
+                          {on && <StackDemo key={`${l.key}-${run}`} layer={l} compact />}
+                        </div>
                       </div>
                     </Collapse>
                   </div>
@@ -125,6 +132,16 @@ export function StackSection() {
             >
               [ {cur.status} ]
             </p>
+          </div>
+          <div className="flex basis-full flex-col gap-3 border-t border-line pt-6">
+            <StackDemo key={`${cur.key}-${run}`} layer={cur} />
+            <button
+              type="button"
+              onClick={() => setRun((r) => r + 1)}
+              className="el-btn-dark mono min-h-9 cursor-pointer self-end rounded-full border border-line2 bg-panel px-3.5 text-[11px] tracking-[0.08em] text-ice"
+            >
+              REPLAY
+            </button>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 /**
- * Site-wide content and placeholders. Anything in [BRACKETS] or marked DEMO
- * is waiting on the owner (see "Open items" in the project brief).
+ * Site-wide content. Empty strings are details still waiting on the owner
+ * (see "Open items" in the project brief); the UI hides or flags them.
  */
 export const site = {
   name: "ElIT Solutions",
@@ -8,13 +8,25 @@ export const site = {
   description:
     "Websites, booking systems and automation for growing businesses in Cyprus. Built as one system, by one team that looks after it.",
   contact: {
-    email: "hello@elit-solutions.example", // DEMO — replace with the real address
-    emailHref: "mailto:hello@elit-solutions.example",
-    whatsapp: "+357 00 000 000", // DEMO
-    whatsappHref: "#", // e.g. https://wa.me/35700000000
-    callHref: "#", // call booking link (Cal.com / Calendly)
-    city: "[CITY]",
-    hours: "[HOURS]",
+    email: "pantelisa1995@gmail.com",
+    emailHref: "mailto:pantelisa1995@gmail.com",
+    phone: "+357 96 666087",
+    phoneHref: "tel:+35796666087",
+    whatsappHref: "https://wa.me/35796666087",
+    /** Shown only when set. */
+    city: "" as string,
+    hours: "" as string,
+  },
+  /** Legal identity for Privacy and Terms. Placeholders render visibly until set. */
+  legal: {
+    name: "" as string, // e.g. registered business or sole-trader name
+    address: "" as string,
+  },
+  /** Cookieless analytics (Umami). Set NEXT_PUBLIC_UMAMI_WEBSITE_ID in Netlify to turn on. */
+  analytics: {
+    provider: "Umami",
+    websiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ?? "",
+    src: process.env.NEXT_PUBLIC_UMAMI_SRC ?? "https://cloud.umami.is/script.js",
   },
 };
 
@@ -32,3 +44,18 @@ export const mainNav = [
 ];
 
 export type Faq = [question: string, answer: string];
+
+/** Page metadata with matching Open Graph title/description for link previews. */
+export function pageMeta(title: string, description: string) {
+  return {
+    title,
+    description,
+    openGraph: {
+      type: "website" as const,
+      siteName: site.name,
+      locale: "en_GB",
+      title: `${title} · ${site.name}`,
+      description,
+    },
+  };
+}

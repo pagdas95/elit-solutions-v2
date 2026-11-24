@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site";
 import { LabExplorer } from "@/components/lab/LabExplorer";
 import { CtaBlock, DarkSheet, Footer } from "@/components/SiteFooter";
 import { Eyebrow, MaskedTitle, StatusTag, wrap, type Status } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Lab",
-  description:
-    "Our own products, concepts and client work, each clearly labelled. No fake case studies.",
-};
+export const metadata: Metadata = pageMeta("Lab", "Our own products, concepts and client work, each clearly labelled. No fake case studies.");
 
 const LABELS: [Status, string][] = [
   ["CONCEPT", "Our own design exploration. Not built for a client, never presented as one."],
